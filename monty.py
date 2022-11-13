@@ -1,80 +1,22 @@
 import random
 
-select = 0
-changeWins = 0
-stayWins = 0
+"""
+Game consists of 3 doors, 1 is the prize, 2 are not
+1. Player chooses door from 3 doors
+2. Host reveals an unselected door without prize
+3. Player can choose to change selection to the remaining door
+    3a. Player switches
+    3b. Player does not switch
+4. Prize is revealed
+"""
 
-for i in range(10):
-    doors = ["prize", "nothin1", "nothin2"]
+def doorGenerator():
+    doors = [0, 0, 0]  # create an empty list of doors
+    randomIndex = random.randint(0, 2)
+    doors[randomIndex] = 1  # create a prize door with value 1
+    return doors
 
-    random.shuffle(doors)
-    #print(doors)
+def main():
+    print(doorGenerator())
 
-    select = 0
-    #print(doors[select])
-
-    if doors[select] == "nothin1" or "prize":
-        doors.remove("nothin2")
-    else:
-        doors.remove("nothin1")
-    #print(doors)
-
-    select = 1
-    print(doors[select])
-
-
-
-#Change Strategy
-for i in range(100000):
-    doors = ["prize", "nothin1", "nothin2"]
-    random.shuffle(doors)
-
-    select = 0
-
-    if doors[select] == "nothin1" or "prize":
-        doors.remove("nothin2")
-    else:
-        doors.remove("nothin1")
-
-    select = 1
-
-    if doors[select] == "prize":
-        changeWins += 1
-
-    
-
-#Stay Strategy
-for i in range(100000):
-    doors = ["prize", 1, 2]
-    random.shuffle(doors)
-
-    if doors[select] == 1 or "prize":
-        doors.remove(2)
-    elif doors[select] == 2:
-        doors.remove(1)
-
-    if doors[select] == "prize":
-        stayWins += 1
-
-#print("Changed Door Strategy: ", changeWins)
-#print("Staying Door Strategy: ", stayWins)
-
-
-winsStay = 0
-winsChange = 0
-
-for i in range(100000):
-    doors = [0, 1, 2]
-    prize = random.choice(doors)
-    select = random.choice(doors)
-    open = list(set(doors) - set([prize, select]))[0]
-    other = list(set([prize, select]) - set([select, open]))[0]
-    if select == prize:
-        winsStay += 1
-    elif other == prize:
-        winsChange += 1
-
-print("Changed Door Strategy: ", winsChange)
-print("Staying Door Strategy: ", winsStay)
-        
-
+main()
