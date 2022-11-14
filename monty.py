@@ -30,25 +30,15 @@ def main():
             doors = doorGenerator()
     
             # Contestant randomly chooses 1 of the 3 doors
-            playerChoiceIndex = random.randint(0, 2)
-            playerChoiceValue = doors[playerChoiceIndex]
-    
-            # # Remove the player chosen door and store a list of the remaining closed doors
-            # remainingDoors = [0, 1, 2].remove(playerChoiceIndex)
+            playerChoiceValue = doors[random.randint(0, 2)]
             
-            # # Determine index of door we will reveal
-            # doorRevealedIndex = remainingDoors[1]
-            # if (remainingDoors[0] == 0):
-            #     doorRevealedIndex = remainingDoors[0]
-    
-            # # Remove by index from the original list of doors
-            # doors.pop(doorRevealedIndex)
-    
+            # Check the choices 
             if (playerChoiceValue == 1):
                 stayWins += 1
             else:
                 changeWins += 1
-
+        
+        # Print the statistics
         print("Iterations {}".format(totalIterations))
         print("\tstayWins   = {}".format(stayWins))
         print("\tchangeWins = {}".format(changeWins))
