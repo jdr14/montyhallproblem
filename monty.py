@@ -1,4 +1,5 @@
 import random
+import time
 
 """
 Game consists of 3 doors, 1 is the prize, 2 are not
@@ -17,6 +18,41 @@ def doorGenerator():
     return doors
 
 def main():
-    print(doorGenerator())
+    totalIterations = 10
+    changeWins = 0
+    stayWins = 0
 
-main()
+    for i in range(5):
+        totalIterations *= 10
+
+        for i in range(totalIterations):
+            # Generate a list of 3 doors with a prize randomly hidden behind one of them
+            doors = doorGenerator()
+    
+            # Contestant randomly chooses 1 of the 3 doors
+            playerChoiceIndex = random.randint(0, 2)
+            playerChoiceValue = doors[playerChoiceIndex]
+    
+            # # Remove the player chosen door and store a list of the remaining closed doors
+            # remainingDoors = [0, 1, 2].remove(playerChoiceIndex)
+            
+            # # Determine index of door we will reveal
+            # doorRevealedIndex = remainingDoors[1]
+            # if (remainingDoors[0] == 0):
+            #     doorRevealedIndex = remainingDoors[0]
+    
+            # # Remove by index from the original list of doors
+            # doors.pop(doorRevealedIndex)
+    
+            if (playerChoiceValue == 1):
+                stayWins += 1
+            else:
+                changeWins += 1
+
+        print("Iterations {}".format(totalIterations))
+        print("\tstayWins   = {}".format(stayWins))
+        print("\tchangeWins = {}".format(changeWins))
+        
+
+if __name__ == '__main__':
+    main()
