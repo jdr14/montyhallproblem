@@ -39,9 +39,10 @@ def main():
                 changeWins += 1
         
         # Print the statistics
-        print("Iterations {}".format(totalIterations))
-        print("\tstayWins   = {}".format(stayWins))
-        print("\tchangeWins = {}".format(changeWins))
+        print(f"\n{totalIterations} Iterations:")
+        print(f"\tstayWins   = {stayWins}")
+        print(f"\tchangeWins = {changeWins}")
+    print()
         
 
 if __name__ == '__main__':
